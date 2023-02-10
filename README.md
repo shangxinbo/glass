@@ -85,6 +85,7 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 
 
 ## TODO 
-数据清洗
-增加删除管理
-增加插入时间字段
+* 数据清洗
+* 增加删除管理
+* 增加插入时间字段
+* 增加图表展示
