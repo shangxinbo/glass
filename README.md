@@ -89,3 +89,4 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 * 增加删除管理
 * 增加插入时间字段
 * 增加图表展示
+* 数据定时备份
