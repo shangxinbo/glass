@@ -82,3 +82,9 @@ npm run preview
 Using `PM2`
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+
+## TODO 
+数据清洗
+增加删除管理
+增加插入时间字段
