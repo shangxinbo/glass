@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev --port=80",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "nuxt": "^3.1.2"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.7",
+    "mysql2": "^3.1.2",
+    "vant": "^4.0.10"
+  }
+}
