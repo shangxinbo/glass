@@ -11,7 +11,8 @@ export default defineEventHandler(async event => {
   const condition = keyword
     ? `where name like '%${keyword}%' or tel like '%${keyword}%'`
     : ''
-  const syl = `select * from customers ${condition} order by update_time desc limit ${
+  // 按id排序可以保证倒叙，避免脏数据
+  const syl = `select * from customers ${condition} order by id desc limit ${
     (page - 1) * pageSize
   }, ${pageSize}`
   const result = await query(syl)
