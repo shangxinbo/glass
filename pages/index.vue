@@ -10,7 +10,8 @@
         </template>
         <template #label>
           <span class="info-item">镜片：{{ item.lens }} / 镜架：{{ item.frame }}</span>
-          <span class="info-item">右眼：{{ item.righteye }} / 左眼：{{ item.lefteye }}</span>
+          <span class="info-item">右眼：{{ item.righteye }}</span>
+          <span class="info-item">左眼：{{ item.lefteye }}</span>
           <span v-if="item.distance" class="info-item">瞳距：{{ item.distance }}</span>
           <span v-if="item.mark" class="info-item">备注：{{ item.mark }}</span>
         </template>
