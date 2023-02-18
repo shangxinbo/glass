@@ -22,7 +22,7 @@
         </template>
       </cell>
     </list>
-    <back-top />
+    <back-top style="z-index:1000;width:3rem;height:3rem"> </back-top>
   </div>
 </template>
 <script setup>
