@@ -107,6 +107,7 @@ const connection = await mysql.createConnection({
   ```
 * __其他__
   流水线需要解压包，`sudo apt install unzip`
+  pm2 开机启动 `pm2 save`
 
 ## 自动化集成 https://buddy.works
 Buddy 插件轻量容易管理相较于appveyor和小老头更适合前端部署，每个月300分钟上限部署时间，勉强够用，部署密集期可使用两个账号shangxinbo123@gmail.com/shangxinbo124@gmail.com
@@ -138,6 +139,9 @@ Action4: SSH remote
   pm2 restart glass
   pm2 save
   ```
+
+> NOTE:关闭非交互模式ssh执行
+https://buddy.works/docs/faq#command-not-found-ssh-action
 
 
 ## TODO 
