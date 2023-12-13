@@ -146,7 +146,5 @@ https://buddy.works/docs/faq#command-not-found-ssh-action
 
 ## TODO 
 * 数据清洗
-* 增加删除管理
-* 增加插入时间字段
 * 增加图表展示
 * 数据定时备份
