@@ -11,6 +11,7 @@
     "nuxt": "^3.8.2"
   },
   "dependencies": {
+    "@vant/touch-emulator": "^1.4.0",
     "dayjs": "^1.11.10",
     "mysql2": "^3.6.5",
     "vant": "^4.8.0"

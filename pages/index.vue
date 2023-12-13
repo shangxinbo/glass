@@ -4,7 +4,7 @@
     <nav-bar title="眼镜店-客户管理" right-text="添加" fixed @click-right="toAdd" />
     <search v-model="keyword" placeholder="请输入搜索关键词(姓名或手机号)" background="#1989fa70" @search="onSearch" />
     <list v-if="customers.length > 0" v-model:loading="loading" :finished="finished" @load="onLoad">
-      <swipe-cell v-for="item in customers" :key="item.id" :before-close="(evt)=>beforeDelete(evt,item)">
+      <swipe-cell v-for="item in customers" :key="item.id">
         <div class="item-contain">
           <div class="item-left">
             <span>{{ item.name }}</span>
@@ -21,7 +21,7 @@
           </div>
         </div>
         <template #right>
-          <Button class="delete-btn" square type="danger" text="删除"></Button>
+          <Button class="delete-btn" square type="danger" text="删除" @click="beforeDelete(item)"></Button>
         </template>
       </swipe-cell>
     </list>
@@ -30,6 +30,7 @@
 </template>
 <script setup>
 import { NavBar, Search, List, BackTop, SwipeCell, Button, showConfirmDialog, showDialog } from 'vant'
+import '@vant/touch-emulator'
 import dayjs from 'dayjs'
 
 const pageSize = 50
@@ -50,7 +51,7 @@ function toAdd() {
   router.replace({ path: '/add' })
 }
 
-function beforeDelete(evt, item) {
+function beforeDelete(item) {
   showConfirmDialog({
     title: '确定删除吗？',
   })
@@ -124,8 +125,14 @@ customers.value = await getData()
 </script>
 <style>
 .container {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .item-contain {
