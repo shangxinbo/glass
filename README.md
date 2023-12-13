@@ -157,6 +157,5 @@ WHERE
     id NOT IN ( SELECT hd.minid FROM ( SELECT MIN( id ) AS minid FROM customers GROUP BY NAME,tel,update_time,price ) hd )
 
 ## TODO 
-* 数据清洗
 * 增加图表展示
 * 数据定时备份
