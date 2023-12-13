@@ -135,7 +135,7 @@ SOURCE- Pipeline Filesystem  : /build_$BUDDY_EXECUTION_ID.zip
 Action4: SSH remote
   ```
   cd /opt/glass
-  sudo unzip -o build_$BUDDY_EXECUTION_ID.zip
+  sudo unzip -ov build_$BUDDY_EXECUTION_ID.zip
   pm2 restart glass
   pm2 save
   ```
