@@ -138,11 +138,23 @@ Action4: SSH remote
   sudo unzip -ov build_$BUDDY_EXECUTION_ID.zip
   pm2 restart glass
   pm2 save
+  rm -f $build_$BUDDY_EXECUTION_ID.zip
   ```
 
 > NOTE:关闭非交互模式ssh执行
 https://buddy.works/docs/faq#command-not-found-ssh-action
 
+
+## 数据清洗
+查询以名称手机号价格更新时间为唯一标准的重复数据
+SELECT NAME,tel,price,update_time,COUNT(1) FROM customers GROUP BY NAME,tel,update_time,price HAVING COUNT(1)>1
+
+删除
+DELETE 
+FROM
+    customers  
+WHERE
+    id NOT IN ( SELECT hd.minid FROM ( SELECT MIN( id ) AS minid FROM customers GROUP BY NAME,tel,update_time,price ) hd )
 
 ## TODO 
 * 数据清洗
