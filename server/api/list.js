@@ -1,4 +1,4 @@
-import query from '../utils/mysql.js'
+import query from '../utils/mysql.mjs'
 
 export default defineEventHandler(async event => {
   // http协议解析框架h3

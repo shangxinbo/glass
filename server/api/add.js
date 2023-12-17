@@ -1,4 +1,4 @@
-import query from '../utils/mysql.js'
+import query from '../utils/mysql.mjs'
 import dayjs from 'dayjs'
 
 export default defineEventHandler(async event => {

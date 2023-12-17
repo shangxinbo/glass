@@ -1,4 +1,4 @@
-import query from '../utils/mysql.js'
+import query from '../utils/mysql.mjs'
 
 export default defineEventHandler(async event => {
   const data = await readBody(event)
