@@ -6,6 +6,10 @@ module.exports = {
       exec_mode: 'cluster',
       instances: 'max',
       script: './.output/server/index.mjs'
+    },
+    {
+      name: 'cron',
+      script: './server/schedule/timing.mjs'
     }
   ]
 }

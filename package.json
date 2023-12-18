@@ -12,8 +12,10 @@
   },
   "dependencies": {
     "@vant/touch-emulator": "^1.4.0",
+    "cron": "^3.1.6",
     "dayjs": "^1.11.10",
     "mysql2": "^3.6.5",
+    "nodemailer": "^6.9.7",
     "vant": "^4.8.0"
   }
 }
