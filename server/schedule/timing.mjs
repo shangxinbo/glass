@@ -6,7 +6,6 @@ import query from '../utils/mysql.mjs'
 import { CronJob } from 'cron'
 import emailConfig from '../../email.config.mjs'
 import { spawn } from 'child_process'
-import fs from 'fs'
 
 const now = dayjs()
 
@@ -81,7 +80,8 @@ async function main () {
   })
 }
 
-const job = new CronJob(
+// 每个月1号发送汇总数据邮件
+new CronJob(
   '10 00 1 * *', // https://crontab.guru/
   function () {
     main().catch(console.error)
@@ -90,32 +90,32 @@ const job = new CronJob(
   true // start
 )
 
-const job2 = new CronJob(
-  //'* * * * 1', // https://crontab.guru/
-  '1/2 * * * *',
+// 每3天备份一下数据库
+new CronJob(
+  '0 4 1/3 * *', // At 04:00 on every 3rd day-of-month from 1 through 31.
   function () {
-    // const dumpFileName = `${Math.round(Date.now() / 1000)}.dump.sql`
-    // const writeStream = fs.createWriteStream(dumpFileName)
-    const dump = spawn('mysqldump', ['-u', 'root', '-pshang123', 'glass'])
-    // dump.stdout
-    //   .pipe(writeStream)
-    //   .on('finish', () => {
-    //     console.log('备份成功')
-    //   })
-    //   .on('error', () => {
-    //     console.log('备份失败')
-    //   })
-
-    transporter.sendMail({
-      from: emailConfig.user,
-      to: 'shangxinbo116@163.com',
-      subject: 'glass-mysql-dump',
-      attachments: [
-        {
-          filename: 'glass.sql',
-          content: dump
-        }
-      ]
+    const dump = spawn('mysqldump', [
+      '-u',
+      'root',
+      `-p${process.env.NUXT_ENV_DB_PWD}`,
+      process.env.NUXT_ENV_DB
+    ])
+    let data = ''
+    dump.stdout.on('data', chunk => {
+      data = data + chunk
+    })
+    dump.stdout.on('end', () => {
+      transporter.sendMail({
+        from: emailConfig.user,
+        to: 'shangxinbo116@163.com',
+        subject: '眼镜店数据库备份',
+        attachments: [
+          {
+            filename: `glass-${Math.round(Date.now() / 1000)}.sql`,
+            content: data
+          }
+        ]
+      })
     })
   },
   null, // onComplete
