@@ -5,6 +5,8 @@ import nodemailer from 'nodemailer'
 import query from '../utils/mysql.mjs'
 import { CronJob } from 'cron'
 import emailConfig from '../../email.config.mjs'
+import { spawn } from 'child_process'
+import fs from 'fs'
 
 const now = dayjs()
 
@@ -81,9 +83,40 @@ async function main () {
 
 const job = new CronJob(
   '10 00 1 * *', // https://crontab.guru/
-  // '* * * * *',
   function () {
     main().catch(console.error)
+  },
+  null, // onComplete
+  true // start
+)
+
+const job2 = new CronJob(
+  //'* * * * 1', // https://crontab.guru/
+  '1/2 * * * *',
+  function () {
+    // const dumpFileName = `${Math.round(Date.now() / 1000)}.dump.sql`
+    // const writeStream = fs.createWriteStream(dumpFileName)
+    const dump = spawn('mysqldump', ['-u', 'root', '-pshang123', 'glass'])
+    // dump.stdout
+    //   .pipe(writeStream)
+    //   .on('finish', () => {
+    //     console.log('备份成功')
+    //   })
+    //   .on('error', () => {
+    //     console.log('备份失败')
+    //   })
+
+    transporter.sendMail({
+      from: emailConfig.user,
+      to: 'shangxinbo116@163.com',
+      subject: 'glass-mysql-dump',
+      attachments: [
+        {
+          filename: 'glass.sql',
+          content: dump
+        }
+      ]
+    })
   },
   null, // onComplete
   true // start
