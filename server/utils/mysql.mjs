@@ -11,6 +11,7 @@ async function query (str) {
     const [rows] = await connection.execute(str)
     return rows
   } catch (e) {
+    console.log(e) // 数据库执行失败
     return []
   }
 }

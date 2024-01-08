@@ -167,3 +167,11 @@ pm2 startup 开机启动
 不需要 node 版本管理工具，使用 nodesource 安装 https://github.com/nodesource/distributions
 删除 iptables 防火墙转发规则，与网关冲突
 Zmodem transfers
+
+pm2 日志
+~/.pm2/logs/ 
+命令pm2 logs查看
+
+nginx 日志
+cd /var/log/nginx/     tail 查看
+

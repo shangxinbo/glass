@@ -16,5 +16,8 @@ export default defineEventHandler(async event => {
     (page - 1) * pageSize
   }, ${pageSize}`
   const result = await query(syl)
+  if (result.length > 0) {
+    console.log('查询数据失败')
+  }
   return { code: 0, data: result }
 })
