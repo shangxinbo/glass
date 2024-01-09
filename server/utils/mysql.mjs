@@ -9,6 +9,7 @@ async function query (str) {
   })
   try {
     const [rows] = await connection.execute(str)
+    connection.end()
     return rows
   } catch (e) {
     console.log(e) // 数据库执行失败
