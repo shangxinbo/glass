@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <nav-bar />
-    <nav-bar title="眼镜店-客户管理" right-text="添加" fixed @click-right="toAdd" />
+    <nav-bar title="个人数据管理" right-text="添加" fixed @click-right="toAdd" />
     <search v-model="keyword" placeholder="请输入搜索关键词(姓名或手机号)" background="#1989fa70" @search="onSearch" />
     <list v-if="customers.length > 0" v-model:loading="loading" :finished="finished" @load="onLoad">
       <swipe-cell v-for="item in customers" :key="item.id">
